@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 
 const Species = ({ speciesList }) => { 
-  const [selectedSpecies, selectSpecies] = useState(1)
+  const [selectedSpecies, setSpecies] = useState('')
 
   const select = (species) => {
-    selectSpecies({species})
+    setSpecies(species.species_id)
   }
 
   return (
     <div>
-      {/* {speciesList.map(species => 
+      {speciesList.map(species => 
           <tr>
             <td><Bird key={species.id} species={species} /></td>
-            <td><Button handleClick={select({species.id})} text='select' /></td>
+            <td><Button handleClick={() => select(species)} text='select' /></td>
           </tr>
       )}
-      <Map speciesId={selectedSpecies} /> */}
-      <td>moikka</td>
+      <Map speciesId={selectedSpecies} />
     </div>
   )
 }
@@ -31,7 +30,10 @@ const Bird = ({ species }) => {
 }
   
 const Map = ({ speciesId }) => {
-  let url = ("https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=", speciesId)
+  const species_mxcode = speciesId.substring(3)
+  let url = `https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=${species_mxcode}`
+  console.log('url', url)
+  console.log(speciesId.speciesId)
   return (
     <div>
       <img 
