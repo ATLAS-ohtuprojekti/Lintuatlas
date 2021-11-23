@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import Species from './components/Species'
 import axios from 'axios'
@@ -6,26 +6,30 @@ import axios from 'axios'
 
 const App = () => {
   const birdListUrl = "https://atlas-staging.rahtiapp.fi/api/birds"
-  
-  const birds = () => {
+  const [speciesList, getList] = useState([])
+
+  const getBirdList = () => {
+    console.log('getBirdList')
     axios
-      .get({ birdListUrl })
+      .get(birdListUrl)
       .then((response) => {
-        console.log(response)
-        const birds = response.data
-        console.log(birds)
-        return birds
+        console.log('Linnut')
+        console.log(response) 
+        const birdList = response.data
+        console.log(birdList)
+        getList(birdList)
     }, (error) => {
         return console.log(error)
     })
   }
 
+  useEffect(getBirdList, [])
   
   return (
     
     <div className="App">
       <Header />
-      <Species speciesList = {birds} />
+      <Species speciesList = {speciesList} />
     </div>
   )
 }

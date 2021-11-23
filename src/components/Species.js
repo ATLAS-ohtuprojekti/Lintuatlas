@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const Species = ({ speciesList }) => { 
-  const [selectedSpecies, selectSpecies] = useState(0)
+  const [selectedSpecies, selectSpecies] = useState(1)
 
   const select = (species) => {
     selectSpecies({species})
@@ -9,15 +9,14 @@ const Species = ({ speciesList }) => {
 
   return (
     <div>
-      {speciesList.map(species => 
+      {/* {speciesList.map(species => 
           <tr>
             <td><Bird key={species.id} species={species} /></td>
             <td><Button handleClick={select({species.id})} text='select' /></td>
           </tr>
       )}
-    </div>
-    <div>
-      <Map speciesId={selectedSpecies} />
+      <Map speciesId={selectedSpecies} /> */}
+      <td>moikka</td>
     </div>
   )
 }
@@ -32,7 +31,7 @@ const Bird = ({ species }) => {
 }
   
 const Map = ({ speciesId }) => {
-  let url = ("https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=", id)
+  let url = ("https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=", speciesId)
   return (
     <div>
       <img 
