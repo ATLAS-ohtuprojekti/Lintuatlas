@@ -6,21 +6,25 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
 
   const select = (species) => {
     setSpecies(species.species_id)
-    passSelectedSpecies(selectedSpecies)
+    passSelectedSpecies(species.species_id)
   }
 
   return (
-    <div className="Species-table">
-      <tr>
-        <TableHeader text="Nimi"/>
-        <TableHeader text="Tieteellinen nimi"/>
-      </tr>
-      {speciesList.map(species => 
-          <tr>
-            <td><Bird key={species.id} species={species} /></td>
-            <td><Button handleClick={() => select(species)} text='select' /></td>
-          </tr>
-      )}
+    <div className="Table">
+      <div className="Table-header">
+        <tr>
+          <TableHeader text="Nimi"/>
+          <TableHeader text="Tieteellinen nimi"/>
+        </tr>
+      </div>
+      <div className="Species-table">
+        {speciesList.map(species => 
+            <tr>
+              <td><Bird key={species.id} species={species} /></td>
+              <td><Button handleClick={() => select(species)} text='select' /></td>
+            </tr>
+        )}
+      </div>
     </div>
   )
 }
@@ -37,7 +41,7 @@ const Bird = ({ species }) => {
 
 const TableHeader = ({ text }) => {
   return (
-    <th className="Table-header">{ text }</th>
+    <th className="Table-column">{ text }</th>
   )
 }
 

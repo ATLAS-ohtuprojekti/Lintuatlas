@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 .App-header {
   background-color: #282c34;
@@ -14,46 +10,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 1vmin);
+  font-size: calc(5px + 1vmin);
   color: white; 
 }
 
-
-.Species-table {
-  display: flex;
-  flex-direction: column;
+.Table {
+  display: block;
   align-items: left;
   text-align: left;
-  font-size: 15px;
-  color: #282c34;
-  padding-left: 5vh;
+  padding-left: 2vw;
   padding-top: 5vh;
   float: left;
   width: 45%;
 }
 
+.Species-table {
+  font-size: 15px;
+  color: #282c34;
+  overflow: auto;
+  max-height: 70vh;
+}
+
 .Table-header {
-  position: sticky;
-  width: 25vh;
   padding-bottom: 2vh;
   font-size: 18px;
 }
 
 .Table-column {
-  width: 25vh;
+  width: 18vw;
 }
 
 .Species-content {
   width: fit - content;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 
 .Map {
   display: flex;
   flex-direction: column;
-  padding-right: 5vh;
-  padding-top: 5vh;
   float: right;
-  width: 40%;
+  max-width: 45%;
+  padding-right: 2vw;
+  padding-top: 5vh;
+  max-height: 70vh;  
 }
