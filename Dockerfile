@@ -1,20 +1,12 @@
-# pull official base image
 FROM node:14-slim
-
-# set working directory
-WORKDIR /opt/app
-
-# add `/app/node_modules/.bin` to $PATH
 ENV NODE_ENV=production
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@4.0.3 -g --silent
-
-# add app
-COPY . ./
+WORKDIR /opt/app
+COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install --production --silent
+RUN chmod -R 777 node_modules/ 
+COPY . .
+EXPOSE 8080
+USER node
 
 # start app
 CMD ["npm", "start"]
