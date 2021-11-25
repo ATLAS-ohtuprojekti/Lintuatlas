@@ -1,0 +1,45 @@
+kind: Template
+apiVersion: v1
+parameters:
+  - name: APP
+    required: true
+    value: lintuatlas
+  - name: APP_PORT
+    required: true
+    value: "3000"
+  - name: HOST
+    required: true
+    value: rahtiapp.fi
+metadata:
+  name: ${APP}
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: ${APP}
+    labels:
+      app: ${APP}
+  spec:
+    ports:
+    - name: ${APP_PORT}
+      port: ${APP_PORT}
+      targetPort: ${{APP_PORT}}
+    selector:
+      app: ${APP}
+      deploymentconfig: ${APP}
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: ${APP}
+    labels:
+      app: ${APP}
+  spec:
+    host: ${APP}.${HOST}
+    port:
+      targetPort: ${APP_PORT}
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: ${APP}
+    wildcardPolicy: None
