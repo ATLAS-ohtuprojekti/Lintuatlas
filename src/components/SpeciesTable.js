@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 
-const SpeciesTable = ({ speciesList }) => { 
+const SpeciesTable = ({ speciesList, passSelectedSpecies }) => { 
   const [selectedSpecies, setSpecies] = useState('')
 
   const select = (species) => {
     setSpecies(species.species_id)
+    passSelectedSpecies(selectedSpecies)
   }
 
   return (
@@ -54,4 +55,3 @@ const Button = ({ handleClick, text }) => (
 )
 
 export default SpeciesTable
-export { selectedSpecies }

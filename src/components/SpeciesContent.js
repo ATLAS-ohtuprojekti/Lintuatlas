@@ -5,6 +5,8 @@ import axios from 'axios'
 
 
 const SpeciesContent = () => {
+  const [selectedSpecies, setSelectedspecies] = useState("")
+  
   const birdListUrl = "https://atlas-staging.rahtiapp.fi/api/birds"
   const [speciesList, getList] = useState([])
 
@@ -27,8 +29,8 @@ const SpeciesContent = () => {
 
   return (  
     <div className="Species-content">
-      <SpeciesTable speciesList = {speciesList} />
-      <Map speciesId = {selectedSpecies} />
+      <SpeciesTable speciesList={speciesList} passSelectedSpecies={setSelectedspecies} />
+      <Map speciesId={selectedSpecies} />
     </div>
   )
 }
