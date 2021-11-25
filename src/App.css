@@ -31,6 +31,11 @@
   max-height: 70vh;
 }
 
+.Species-table tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
 .Table-header {
   padding-bottom: 2vh;
   font-size: 18px;
@@ -53,5 +58,5 @@
   max-width: 45%;
   padding-right: 2vw;
   padding-top: 5vh;
-  max-height: 70vh;  
+  max-height: 70vh;
 }

@@ -19,9 +19,8 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
       </div>
       <div className="Species-table">
         {speciesList.map(species => 
-            <tr>
+            <tr onClick={() => select(species)}>
               <td><Bird key={species.id} species={species} /></td>
-              <td><Button handleClick={() => select(species)} text='select' /></td>
             </tr>
         )}
       </div>
@@ -52,10 +51,10 @@ const SpeciesColumn = ({ text }) => {
 }
 
 
-const Button = ({ handleClick, text }) => (
-  <button onClick={handleClick}>
-    {text}
-  </button>
-)
+// const Button = ({ handleClick, text }) => (
+//   <button onClick={handleClick}>
+//     {text}
+//   </button>
+// )
 
 export default SpeciesTable
