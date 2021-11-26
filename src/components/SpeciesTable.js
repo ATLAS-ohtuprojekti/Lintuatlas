@@ -20,7 +20,7 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
       <div className="Species-table">
         {speciesList.map(species => 
             <tr onClick={() => select(species)}>
-              <td><Bird key={species.id} species={species} /></td>
+              <td><Bird key={species.id} species={species} selectedSpecies={selectedSpecies}/></td>
             </tr>
         )}
       </div>
@@ -28,7 +28,18 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
   )
 }
 
-const Bird = ({ species }) => {
+const Bird = ({ species, selectedSpecies}) => {
+  console.log('speciesid: ', species.species_id)
+  console.log('selectedspecies: ', selectedSpecies)
+  if (species.species_id === selectedSpecies) {
+    console.log('speciesid: ', species.id)
+    return (
+      <tr className="Selected-species">
+        <SpeciesColumn text={species.speciesFI}/>
+        <SpeciesColumn text={species.speciesSCI}/>
+      </tr>
+    )
+  }
   return (
     <tr>
       <SpeciesColumn text={species.speciesFI}/>
