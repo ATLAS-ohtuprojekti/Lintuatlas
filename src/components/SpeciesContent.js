@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import SpeciesTable, { selectedSpecies } from './SpeciesTable'
+import SpeciesTable from './SpeciesTable'
 import Map from './Map'
 import axios from 'axios'
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
 
 
 const SpeciesContent = () => {
   const [selectedSpecies, setSelectedspecies] = useState("")
-  
   const birdListUrl = "https://atlas-staging.rahtiapp.fi/api/birds"
   const [speciesList, getList] = useState([])
 
@@ -27,12 +27,33 @@ const SpeciesContent = () => {
 
   useEffect(getBirdList, [])
 
+  const unselectSpecies = () => {
+    setSelectedspecies("")
+  }
+
+  
+  if (isMobile && selectedSpecies === "") {
+    return (  
+      <div className="Species-content-mobile">
+        <SpeciesTable speciesList={speciesList} passSelectedSpecies={setSelectedspecies} />
+      </div>
+    )
+  } else if (isMobile) {
+    return (  
+      <div className="Species-content-mobile">
+        <SpeciesTable speciesList={speciesList} passSelectedSpecies={setSelectedspecies} />
+        <Map speciesId={selectedSpecies} unselect={unselectSpecies} />
+      </div>
+    )
+  }
+
   return (  
     <div className="Species-content">
       <SpeciesTable speciesList={speciesList} passSelectedSpecies={setSelectedspecies} />
-      <Map speciesId={selectedSpecies} />
+      <Map speciesId={selectedSpecies}/>
     </div>
   )
 }
+
 
 export default SpeciesContent

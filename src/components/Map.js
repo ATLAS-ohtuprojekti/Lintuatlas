@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
 
-const Map = ({ speciesId }) => {
+
+const Map = ({ speciesId, unselect }) => {
   let species_mxcode = speciesId.substring(3)
 
   if (speciesId === ''){
@@ -8,6 +10,19 @@ const Map = ({ speciesId }) => {
   }
   
   let url = `https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=${species_mxcode}`
+
+  if (isMobile) {
+    return (
+      <div className = "Map-mobile">
+        <span className="Close-icon" onClick={unselect}>x</span>
+        <img 
+          src = {url}
+        />
+      </div>
+    )
+  }
+
+  
   return (
     <div className = "Map">
       <img 

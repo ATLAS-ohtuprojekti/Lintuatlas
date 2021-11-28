@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
 
 
 const SpeciesTable = ({ speciesList, passSelectedSpecies }) => { 
@@ -7,6 +8,26 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
   const select = (species) => {
     setSpecies(species.species_id)
     passSelectedSpecies(species.species_id)
+  }
+
+  if (isMobile) {
+    return (
+      <div className="Table-mobile">
+        <div className="Table-header">
+          <tr>
+            <TableHeader text="Nimi"/>
+            <TableHeader text="Tieteellinen nimi"/>
+          </tr>
+        </div>
+        <div className="Species-table">
+          {speciesList.map(species => 
+              <tr onClick={() => select(species)}>
+                <td><Bird key={species.id} species={species} selectedSpecies={selectedSpecies}/></td>
+              </tr>
+          )}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -50,12 +71,22 @@ const Bird = ({ species, selectedSpecies}) => {
   
 
 const TableHeader = ({ text }) => {
+  if (isMobile) {
+    return (
+      <td className="Table-column-mobile">{ text }</td>
+    )
+  }
   return (
     <th className="Table-column">{ text }</th>
   )
 }
 
 const SpeciesColumn = ({ text }) => {
+  if (isMobile) {
+    return (
+      <td className="Table-column-mobile">{ text }</td>
+    )
+  }
   return (
     <td className="Table-column">{ text }</td>
   )
