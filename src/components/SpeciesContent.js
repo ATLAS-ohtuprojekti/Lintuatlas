@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SpeciesTable from './SpeciesTable'
 import Map from './Map'
 import axios from 'axios'
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 
 
 const SpeciesContent = () => {
@@ -50,7 +50,7 @@ const SpeciesContent = () => {
   return (  
     <div className="Species-content">
       <SpeciesTable speciesList={speciesList} passSelectedSpecies={setSelectedspecies} />
-      <Map speciesId={selectedSpecies}/>
+      <Map speciesId={selectedSpecies} unselect={unselectSpecies}/>
     </div>
   )
 }

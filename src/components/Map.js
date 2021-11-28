@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 
 
 const Map = ({ speciesId, unselect }) => {
@@ -20,16 +20,15 @@ const Map = ({ speciesId, unselect }) => {
         />
       </div>
     )
+  } else {
+    return (
+      <div className = "Map">
+        <img 
+          src = {url}
+        />
+      </div>
+    )
   }
-
-  
-  return (
-    <div className = "Map">
-      <img 
-        src = {url}
-      />
-    </div>
-  )
 }
 
 export default Map

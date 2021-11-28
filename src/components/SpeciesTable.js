@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 
 
 const SpeciesTable = ({ speciesList, passSelectedSpecies }) => { 
@@ -28,25 +28,25 @@ const SpeciesTable = ({ speciesList, passSelectedSpecies }) => {
         </div>
       </div>
     )
+  } else {
+    return (
+      <div className="Table">
+        <div className="Table-header">
+          <tr>
+            <TableHeader text="Nimi"/>
+            <TableHeader text="Tieteellinen nimi"/>
+          </tr>
+        </div>
+        <div className="Species-table">
+          {speciesList.map(species => 
+              <tr onClick={() => select(species)}>
+                <td><Bird key={species.id} species={species} selectedSpecies={selectedSpecies}/></td>
+              </tr>
+          )}
+        </div>
+      </div>
+    )  
   }
-
-  return (
-    <div className="Table">
-      <div className="Table-header">
-        <tr>
-          <TableHeader text="Nimi"/>
-          <TableHeader text="Tieteellinen nimi"/>
-        </tr>
-      </div>
-      <div className="Species-table">
-        {speciesList.map(species => 
-            <tr onClick={() => select(species)}>
-              <td><Bird key={species.id} species={species} selectedSpecies={selectedSpecies}/></td>
-            </tr>
-        )}
-      </div>
-    </div>
-  )
 }
 
 const Bird = ({ species, selectedSpecies}) => {
@@ -75,10 +75,11 @@ const TableHeader = ({ text }) => {
     return (
       <td className="Table-column-mobile">{ text }</td>
     )
+  } else {
+    return (
+      <th className="Table-column">{ text }</th>
+    )
   }
-  return (
-    <th className="Table-column">{ text }</th>
-  )
 }
 
 const SpeciesColumn = ({ text }) => {
@@ -86,10 +87,11 @@ const SpeciesColumn = ({ text }) => {
     return (
       <td className="Table-column-mobile">{ text }</td>
     )
-  }
-  return (
-    <td className="Table-column">{ text }</td>
-  )
+  } else {
+    return (
+      <td className="Table-column">{ text }</td>
+    )
+  }  
 }
 
 
