@@ -25,7 +25,7 @@
 }
 
 .Species-table {
-  font-size: 15px;
+  font-size: calc(5px + 2vmin);
   color: #282c34;
   overflow: auto;
   max-height: 70vh;
@@ -42,7 +42,7 @@
 
 .Table-header {
   padding-bottom: 2vh;
-  font-size: 18px;
+  font-size: calc(6px + 2vmin);
 }
 
 .Table-column {
@@ -69,6 +69,7 @@
 .Species-content-mobile {
   width: fit - content;
   flex-direction: row;
+  font-size: 4vh;
 }
 
 .Table-mobile {
@@ -87,26 +88,26 @@
 .Map-mobile {
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+  max-width: 70%;
+  max-height: 90%;
   position: fixed;
   background: white;
   opacity: 1;
-  top: 5vh;
+  top: 10vh;
   right: 5vw;
 }
 
 .Close-icon {
-  content: 'x';
   cursor: pointer;
   position: fixed;
-  right: calc(15% - 30px);
-  top: calc(100vh - 85vh - 33px);
+  right: 8vw;
+  top: 12vh;
   background: #ddd;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  line-height: 14px;
+  line-height: 7px;
   text-align: center;
   border: 1px solid #282c34;
-  font-size: 20px;
+  font-size: 10px;
 }
