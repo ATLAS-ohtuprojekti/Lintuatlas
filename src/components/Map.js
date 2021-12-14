@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import { isMobile } from 'react-device-detect'
 
 
 const Map = ({ speciesId, unselect }) => {
-  let species_mxcode = speciesId.substring(3)
+  let species_mxcode = speciesId
 
   if (speciesId === ''){
-    species_mxcode = 25836
+    species_mxcode = 'MX.25836'
   }
   
-  let url = `https://atlas-staging.rahtiapp.fi/api/grid/map/data?id=${species_mxcode}`
+  let url = `https://atlas-staging.rahtiapp.fi/api/v1/map/${species_mxcode}/atlas/3`
 
   if (isMobile) {
     return (
@@ -17,6 +16,7 @@ const Map = ({ speciesId, unselect }) => {
         <span className="Close-icon" onClick={unselect}>x</span>
         <img 
           src = {url}
+          alt = 'Species map'
         />
       </div>
     )
@@ -25,6 +25,7 @@ const Map = ({ speciesId, unselect }) => {
       <div className = "Map">
         <img 
           src = {url}
+          alt = 'Species map'
         />
       </div>
     )

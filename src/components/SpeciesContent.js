@@ -7,7 +7,7 @@ import { isMobile } from 'react-device-detect'
 
 const SpeciesContent = () => {
   const [selectedSpecies, setSelectedspecies] = useState("")
-  const birdListUrl = "https://atlas-staging.rahtiapp.fi/api/birds"
+  const birdListUrl = "https://atlas-staging.rahtiapp.fi/api/v1/taxon"
   const [speciesList, getList] = useState([])
 
   const getBirdList = () => {
